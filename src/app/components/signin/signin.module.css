@@ -1,0 +1,38 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 20px rgba(135, 117, 138, 0.2), 0 0 10px rgba(135, 117, 138, 0.1) inset;
+    color:white;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    padding:2rem;
+}
+.form label{
+    margin-bottom: 5px;
+}
+.form button{
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.6); /* Set the button background color to black with some transparency */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+.form input{
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Set a semi-transparent white border */
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.3); /* Set a semi-transparent black background */
+    color: white; /* Adjust text color for better visibility on a dark background */
+}
