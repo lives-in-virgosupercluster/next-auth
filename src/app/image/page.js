@@ -19,14 +19,17 @@ const ImageGallery = () => {
   const handleDeleteImage = () => {
     // Implement delete image logic
     console.log('Delete Image');
-    router.putsh('/delete');
+    router.push('/delete');
   };
 
   return (
     <div className={styles.container}>
-      <button className={`${styles.btn} ${styles.viewimage}`}></button>
-      <button className={`${styles.btn} ${styles.removeimage}`}></button>
-      <button className={`${styles.btn} ${styles.uploadimage}`}></button>
+      <h2>Image route</h2>
+    
+      <button className={`${styles.btn} ${styles.viewimage}`} onClick={handleViewAllImages}>
+        View Images</button>
+      <button className={`${styles.btn} ${styles.removeimage}` }onClick={handleDeleteImage}>Delete Image</button>
+      <button className={`${styles.btn} ${styles.uploadimage}`} onClick={handleUploadImage}>Upload Image</button>
     
     </div>
   );

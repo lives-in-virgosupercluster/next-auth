@@ -5,21 +5,9 @@ import mongoose, { Schema } from "mongoose";
 
 const imageSchema = new Schema(
   {
-    Imagename: {
-        type: String,
-        required:true,
-       
-      },
-    
-      Imagedata: {
-        type: Buffer,
-        required:true,
-       
-      },
-      contentType: {
-        type: String,
-       
-      },
+    username:String,
+  name:String,
+  filename:String,
     
   },
   {
