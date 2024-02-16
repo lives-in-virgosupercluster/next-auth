@@ -37,7 +37,7 @@ export const options = {
               console.log("Good Pass");
               delete foundUser.password;
 
-              foundUser["role"] = "Unverified Email";
+              foundUser["role"] = "unverified";
 
               // Redirect to "/image" after successful authentication
               return Promise.resolve("/image");
