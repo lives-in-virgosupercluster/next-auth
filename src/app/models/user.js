@@ -8,10 +8,10 @@ const userSchema = new Schema(
     name: String,
     email: String,
     password: String,
-   role:{
-    String,
-    required
-   }
+    role: {
+      type: String,
+      required: true
+    }
   
   },
   {

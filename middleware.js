@@ -5,12 +5,13 @@ export default withAuth(
   function middleware(req) {
     console.log(req.nextUrl.pathname);
     console.log(req.nextauth.token.role);
+    console.log("here in middleware");
 
     if (
-      req.nextUrl.pathname.startsWith("/remove") &&
+      req.nextUrl.pathname.startsWith("/delete") &&
       req.nextauth.token.role != "admin"
     ) {
-      return NextResponse.rewrite(new URL("/Denied", req.url));
+      return NextResponse.rewrite(new URL("/denied", req.url));
     }
   },
   {
@@ -20,4 +21,4 @@ export default withAuth(
   }
 );
 
-export const config = { matcher: ["/remove"] };
+export const config = { matcher: ["/delete"] };

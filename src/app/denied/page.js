@@ -1,7 +1,8 @@
 import React from 'react'
 
-export const page = () => {
+ const denied = () => {
   return (
-    <div>Denied!</div>
+    <div style={{color:"white"}}>Denied!</div>
   )
 }
+export default denied;

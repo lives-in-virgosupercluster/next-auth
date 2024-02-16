@@ -7,45 +7,31 @@ export const options = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        user: {
-          label: "user:",
-          type: "text",
-          placeholder: "Enter Username",
-        },
-        password: {
-          label: "password:",
-          type: "password",
-          placeholder: "Enter Your Password",
-        },
+        user: { label: "Username", type: "text", placeholder: "Enter Username" },
+        password: { label: "Password", type: "password", placeholder: "Enter Your Password" },
       },
       async authorize(credentials, req) {
         try {
           console.log("Received credentials:", credentials);
 
-          const foundUser = await User.findOne({ name: credentials.user })
-            .lean()
-            .exec();
+          const foundUser = await User.findOne({ name: credentials.user }).lean().exec();
 
           if (foundUser) {
             console.log("User Exists");
-            const match = await bcrypt.compare(
-              credentials.password,
-              foundUser.password
-            );
+            const isPasswordValid = await bcrypt.compare(credentials.password, foundUser.password);
 
-            if (match) {
-              console.log("Good Pass");
+            if (isPasswordValid) {
+              console.log("Good Password");
               delete foundUser.password;
 
-              foundUser["role"] = "unverified";
-
               // Redirect to "/image" after successful authentication
-              return Promise.resolve("/image");
+              return Promise.resolve(foundUser);
             }
           }
         } catch (error) {
           console.error("Error in authorize function:", error);
         }
+
         console.log("Authorization failed");
         return Promise.resolve(null);
       },
@@ -53,11 +39,17 @@ export const options = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.role = user.role;
+      if (user) {
+        token.role = user.role;
+        token.id = user._id; // Optionally include user ID in the token
+      }
+      console.log(user, token, "token");
       return token;
     },
     async session({ session, token }) {
-      if (session?.user) session.user.role = token.role;
+      if (token) {
+        session.user = token;
+      }
       return session;
     },
   },
