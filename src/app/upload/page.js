@@ -1,9 +1,12 @@
 // components/UploadImage.js
 "use client"
 import React, { useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 const UploadImage = () => {
   const [file, setFile] = useState(null);
+  const[user,setUser]=useState(null);
+  const {data: session}=useSession();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -14,9 +17,11 @@ const UploadImage = () => {
       console.error('Please select a file to upload');
       return;
     }
+    console.log(session);
 
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('file', file);
+    formData.append('user',session.user.name);
 
     try {
       const response = await fetch('/api/upload', {
