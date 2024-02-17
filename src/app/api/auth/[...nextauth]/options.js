@@ -43,7 +43,7 @@ export const options = {
         token.role = user.role;
         token.id = user._id; // Optionally include user ID in the token
       }
-      console.log(user, token, "token");
+      //console.log(user, token, "token");
       return token;
     },
     async session({ session, token }) {
