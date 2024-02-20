@@ -36,7 +36,7 @@ const UserImagesPage = () => {
 
   return (
     <div>
-      <h1>User Images for {session?.user?.name}</h1>
+      <h1 style={{'color':'white'}}>User Images for {session?.user?.name}</h1>
       <ul>
         {userImages.map((filePath, index) => (
           <li key={index}>
