@@ -19,12 +19,13 @@ const ImageGallery = () => {
   };
 
   const handleDeleteImage = () => {
-    if (session && session.token && session.token.role === 'admin') {
+    if (session && session.user && session.user.role === 'admin') {
       // Implement delete image logic
       console.log('Delete Image');
       router.push('/delete');
     } else {
       // Redirect to denied page or show an error message
+      console.error(session);
       console.error('Access denied. User does not have admin role.');
       router.push('/denied');
     }
