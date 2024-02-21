@@ -1,10 +1,12 @@
 "use client"
 import styles from "./login.module.css";
 import React, { useState } from 'react'
+import { signIn } from "next-auth/react";
 
  const Login = () => {
     const onHandleClick=(e)=>{
         e.preventDefault();
+        
 
     }
     const [user,setuser]=new useState("");
