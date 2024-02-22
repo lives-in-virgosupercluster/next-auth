@@ -32,10 +32,14 @@ const ImageGallery = () => {
   };
   const handleLogout = async () => {
     // Perform sign out
-    await signOut();
+    await signOut({
+      redirect: false,
+     
+    });
+    console.log('logout');
 
     // Redirect to the "/logout" endpoint
-    router.push('http://localhost:3000/api/auth/signin');
+    router.push('http://localhost:3000/login');
   };
 
 

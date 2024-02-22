@@ -1,14 +1,30 @@
 "use client"
 import styles from "./login.module.css";
 import React, { useState } from 'react'
-
+import { signIn } from "next-auth/react";
+import { useSearchParams, useRouter } from "next/navigation";
  const Login = () => {
-    const onHandleClick=(e)=>{
+  const router=useRouter();
+  const [user,setuser]=new useState("");
+  const [pwd,setpwd]=new useState("");
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/image";
+    const onHandleClick=async(e)=>{
         e.preventDefault();
+        const res = await signIn("credentials", {
+          redirect: false,
+          username: user,
+          password: pwd,
+          callbackUrl,
+        });
+        console.log(res);
+        if(!res?.error){
+          router.push(callbackUrl);
+
+        }
 
     }
-    const [user,setuser]=new useState("");
-    const [pwd,setpwd]=new useState("");
+   
   return (
     <div className={styles.container}>
       <h2>Login</h2>
@@ -19,7 +35,7 @@ import React, { useState } from 'react'
                 className={styles.input}
                 ></input>
                 <label>Password</label>
-                <input placeholder="Enter Password" value={pwd} onChange={(e)=>setpwd(e.target.value)}>
+                <input placeholder="Enter Password" value={pwd} onChange={(e)=>setpwd(e.target.value)} type="password">
 
                 </input>
                 <button type="submit">login</button>
