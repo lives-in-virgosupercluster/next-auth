@@ -3,7 +3,12 @@ import User from "@/src/app/models/user";
 import bcrypt from "bcrypt";
 
 export const options = {
+  pages: {
+    signIn: "/login",
+    signOut:"/login"
+  },
   providers: [
+
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -14,7 +19,8 @@ export const options = {
         try {
           console.log("Received credentials:", credentials);
 
-          const foundUser = await User.findOne({ name: credentials.user }).lean().exec();
+          const foundUser = await User.findOne({ name: credentials.username }).lean().exec();
+        
 
           if (foundUser) {
             console.log("User Exists");
