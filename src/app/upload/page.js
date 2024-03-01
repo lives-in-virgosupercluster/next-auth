@@ -31,6 +31,7 @@ const UploadImage = () => {
 
       if (response.ok) {
         console.log('Image uploaded successfully');
+        alert("file uploaded")
       } else {
         console.error('Failed to upload image');
       }
