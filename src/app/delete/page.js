@@ -1,10 +1,11 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-
+import { useRouter } from 'next/navigation';
 const RemoveImage = () => {
   const { data: session } = useSession();
   const [userImages, setUserImages] = useState([]);
+  const router=useRouter();
 
   useEffect(() => {
     const fetchUserImages = async () => {
@@ -48,6 +49,7 @@ const RemoveImage = () => {
 
         if (response.ok) {
           console.log('Image deleted successfully:', filePath);
+          router.reload();
           // Optionally, update your component state or trigger a re-fetch of image data
         } else {
           console.error('Error deleting image:', response.statusText);
